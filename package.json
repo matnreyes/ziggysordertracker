@@ -7,9 +7,10 @@
         "start": "node server.js"
     },
     "dependencies": {
+        "dotenv": "^18.0.7",
         "express": "4.x",
         "hbs": "^4.1.2",
-        "node-fetch": "^2.6.1"
+        "node-fetch": "^2.7.0"
     },
     "license": "MIT"
 }
