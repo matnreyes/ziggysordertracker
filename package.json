@@ -1,0 +1,15 @@
+{
+    "name": "ziggysordertracker",
+    "version": "0.0.1",
+    "description": "A simple Node app that makes requests to Etsy’s Open API.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "4.x",
+        "hbs": "^4.1.2",
+        "node-fetch": "^2.6.1"
+    },
+    "license": "MIT"
+}
