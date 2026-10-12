@@ -35,7 +35,6 @@ app.get('/callback', (req, res) => {
     console.log(code)
 })
 
-const PORT = 3003
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running at http://localhost:${process.env.PORT}`)
 })
