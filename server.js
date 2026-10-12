@@ -18,7 +18,7 @@ app.get('/ping', async (req, res) => {
     }
 
     const response = await fetch(
-        'https://api.etsy.com/v3/application/openapi-ping',
+        'https://api.etsy.com/v3/application/users/me',
         requestOptions
     )
 
@@ -28,6 +28,11 @@ app.get('/ping', async (req, res) => {
     } else {
         res.send("oops")
     }
+})
+
+app.get('/callback', (req, res) => {
+    const code = req.query.code
+    console.log(code)
 })
 
 const PORT = 3003
