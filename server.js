@@ -55,7 +55,7 @@ app.get('/oauth/redirect', async (req, res) => {
             client_id: process.env.ETSY_API_KEY,
             redirect_uri: process.env.REDIRECT_URI,
             code: authCode,
-            code_verifier: codeChallenge,
+            code_verifier: codeVerifier,
             state
         }),
         headers: {
@@ -69,7 +69,6 @@ app.get('/oauth/redirect', async (req, res) => {
         const tokenData = await response.json()
         res.send(tokenData)
     } else {
-
         res.send('oops')
     }
 })
