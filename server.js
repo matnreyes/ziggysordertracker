@@ -4,7 +4,7 @@ const codeGenerator = require('./code-generator.js')
 const express = require('express')
 const fetch = require('node-fetch')
 const hbs = require('hbs')
-const { state, codeChallenge, codeVerifier } = codeGenerator
+const { state, codeChallenge, codeVerifier } = codeGenerator()
 
 const app = express()
 app.set("view engine", "hbs")
