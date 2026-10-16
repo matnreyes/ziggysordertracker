@@ -56,7 +56,6 @@ app.get('/oauth/redirect', async (req, res) => {
             redirect_uri: process.env.REDIRECT_URI,
             code: authCode,
             code_verifier: codeVerifier,
-            state
         }),
         headers: {
             'Content-Type': 'application/json'
