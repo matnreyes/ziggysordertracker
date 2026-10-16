@@ -63,10 +63,7 @@ app.get('/oauth/redirect', async (req, res) => {
         }
     }
 
-    console.log(requestOptions)
-
     const response = await fetch(tokenUrl, requestOptions)
-    console.log(response)
 
     if (response.ok) {
         const tokenData = await response.json()
