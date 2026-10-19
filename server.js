@@ -102,6 +102,24 @@ const reqHeaders = (token) => ({
     }
 })
 
+const getShopID = async (token) => {
+    const response = await fetch(
+        'https://openapi.etsy.com/v3/application/users/me',
+        reqHeaders(token)
+    )
+
+    const shopData = await response.json()
+    return shopData.shop_id
+}
+
+app.get('/orders', async (req, res) => {
+    const { access_token } = req.query
+
+    const shopId = await getShopID(access_token)
+
+    console.log(shopId)
+})
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at http://localhost:${process.env.PORT}`)
