@@ -117,7 +117,28 @@ app.get('/orders', async (req, res) => {
 
     const shopId = await getShopID(access_token)
 
-    console.log(shopId)
+    // Etsy refers to orders as receipts in API docs.    
+    const orderParams = new URLSearchParams({
+        was_paid: true,
+        was_shipped: false,
+        sort_on: "created",
+        limit: 100,
+    })
+
+    const receiptResponse = await fetch(
+        `https://openapi.etsy.com/v3/application/shops/${shopId}/receipts?${orderParams}`,
+        reqHeaders(access_token)
+    )
+
+    if (receiptResponse.ok) {
+        const receipts = await receiptResponse.json()
+        return res.send(receipts)
+    }
+    else {
+        return res.send('oops')
+    }
+
+
 })
 
 
