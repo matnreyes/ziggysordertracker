@@ -77,9 +77,7 @@ app.get('/welcome', async (req, res) => {
 
     const user_id = access_token.split('.')[0]
 
-    const requestOptions = {
-        headers: reqHeaders(access_token)
-    }
+    const requestOptions = reqHeaders(access_token)
 
     const response = await fetch(
         `https://api.etsy.com/v3/application/users/${user_id}`,
@@ -98,8 +96,10 @@ app.get('/welcome', async (req, res) => {
 })
 
 const reqHeaders = (token) => ({
-    'x-api-key': `${process.env.ETSY_API_KEY}:${process.env.ETSY_SHARED_SECRET}`,
-    Authorization: `Bearer ${token}`,
+    headers: {
+        'x-api-key': `${process.env.ETSY_API_KEY}:${process.env.ETSY_SHARED_SECRET}`,
+        Authorization: `Bearer ${token}`,
+    }
 })
 
 
