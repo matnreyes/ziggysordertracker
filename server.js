@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
         response_type: 'code',
         client_id: process.env.ETSY_API_KEY,
         redirect_uri: process.env.REDIRECT_URI,
-        scope: 'transactions_r',
-        state: state,
+        scope: 'transactions_r email_r',
+        state,
         code_challenge: codeChallenge,
         code_challenge_method: 'S256',
     })
@@ -66,7 +66,37 @@ app.get('/oauth/redirect', async (req, res) => {
 
     if (response.ok) {
         const tokenData = await response.json()
-        res.send(tokenData)
+        res.redirect(`/welcome?access_token=${tokenData.access_token}`)
+    } else {
+        res.send('oops')
+    }
+})
+
+app.get('/welcome', async (req, res) => {
+    const { access_token } = req.query
+
+    const user_id = access_token.split('.')[0]
+
+    const requestOptions = {
+        headers: {
+            'x-api-key': `${process.env.ETSY_API_KEY}:${process.env.ETSY_SHARED_SECRET}`,
+            Authorization: `Bearer ${access_token}`,
+        }
+    }
+
+
+    const response = await fetch(
+        `https://api.etsy.com/v3/application/users/${user_id}`,
+        requestOptions
+    )
+
+    if (response.ok) {
+        const userData = await response.json()
+        console.log(userData)
+        res.render('welcome', {
+            first_name: userData.first_name,
+            profile_pic: userData.image_url_75x75
+        })
     } else {
         res.send('oops')
     }
