@@ -134,7 +134,7 @@ app.get('/orders', async (req, res) => {
 
     if (receiptResponse.ok) {
         const activeOrders = await receiptResponse.json()
-        res.send(actove)
+        res.send(activeOrders)
     }
     else {
         return res.send('oops')
