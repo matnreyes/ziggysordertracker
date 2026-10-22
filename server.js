@@ -120,18 +120,21 @@ app.get('/orders', async (req, res) => {
     const orderParams = new URLSearchParams({
         was_paid: true,
         was_shipped: false,
+        was_canceled: false,
         sort_on: "created",
         limit: 100,
     })
 
+
+    //Etsy API: getShopReceipts()
     const receiptResponse = await fetch(
         `https://openapi.etsy.com/v3/application/shops/${shopId}/receipts?${orderParams}`,
         reqHeaders(access_token)
     )
 
     if (receiptResponse.ok) {
-        const receipts = await receiptResponse.json()
-        return res.send(receipts)
+        const activeOrders = await receiptResponse.json()
+        res.send(activeOrders)
     }
     else {
         return res.send('oops')
