@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 76, "column": 0}, "map": {"version":3,"sources":["file:///home/steamos/Development/ziggysordertracker/app/ping/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server'\n\nexport async function GET() {\n    const requestOptions = {\n        method: 'GET',\n        headers: {\n            'x-api-key': `${process.env.ETSY_API_KEY}:${process.env.ETSY_API_SECRET}`,\n        },\n    }\n\n    const response = await fetch(\n        'https://api.etsy.com/v3/application/openapi-ping',\n        requestOptions\n    )\n\n    if (response.ok) {\n        const data = await response.json()\n        return NextResponse.json(data)\n    } else {\n        return NextResponse.json({ message: `Etsy API is not reachable!` })\n    }\n}"],"names":["GET","requestOptions","method","headers","process","env","ETSY_API_KEY","ETSY_API_SECRET","response","fetch","ok","data","json","message"],"mappings":";;;;AAAA;;AAEO,eAAeA;IAClB,MAAMC,iBAAiB;QACnBC,QAAQ;QACRC,SAAS;YACL,aAAa,GAAGC,QAAQC,GAAG,CAACC,YAAY,CAAC,CAAC,EAAEF,QAAQC,GAAG,CAACE,eAAe,EAAE;QAC7E;IACJ;IAEA,MAAMC,WAAW,MAAMC,MACnB,oDACAR;IAGJ,IAAIO,SAASE,EAAE,EAAE;QACb,MAAMC,OAAO,MAAMH,SAASI,IAAI;QAChC,OAAO,gJAAY,CAACA,IAAI,CAACD;IAC7B,OAAO;QACH,OAAO,gJAAY,CAACC,IAAI,CAAC;YAAEC,SAAS,CAAC,0BAA0B,CAAC;QAAC;IACrE;AACJ"}}]
+}
