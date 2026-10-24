@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const codeGenerator = require('../../middleware/codeGenerator')
+
+const { codeVerifier, codeChallenge } = codeGenerator()
+
 export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redirect'>) {
     const params = request.nextUrl.searchParams
     const authCode = params.get('code')
