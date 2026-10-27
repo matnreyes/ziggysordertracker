@@ -69,10 +69,37 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../../app/[slug]/route.ts
+// Validate ../../../app/user/[userId]/page.tsx
 {
-  type __IsExpected<Specific extends RouteHandlerConfig<"/[slug]">> = Specific
-  const handler = {} as typeof import("../../../app/[slug]/route.js")
+  type __IsExpected<Specific extends AppPageConfig<"/user/[userId]">> = Specific
+  const handler = {} as typeof import("../../../app/user/[userId]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  
+  type __ParamMatchingValue =
+    typeof handler extends { unstable_paramMatching: infer Matcher } ? Matcher :
+    typeof handler extends { unstable_generateParamMatching: (...args: any[]) => infer Matcher } ? Awaited<Matcher> : {}
+  type __InvalidParamMatchingKeys = Exclude<keyof __ParamMatchingValue, keyof ParamMap["/user/[userId]"]>
+  type __AssertNoInvalidParamMatchingKeys<Invalid extends never> = Invalid
+  const __paramMatchingKeyCheck: __AssertNoInvalidParamMatchingKeys<__InvalidParamMatchingKeys> | undefined = undefined
+  void __paramMatchingKeyCheck
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/oauth/redirect/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/oauth/redirect">> = Specific
+  const handler = {} as typeof import("../../../app/oauth/redirect/route.js")
+  type __Check = __IsExpected<typeof handler>
+  
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/oauth/start/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/oauth/start">> = Specific
+  const handler = {} as typeof import("../../../app/oauth/start/route.js")
   type __Check = __IsExpected<typeof handler>
   
   // @ts-ignore

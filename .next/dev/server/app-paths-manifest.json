@@ -1,5 +1,5 @@
 {
-  "/[slug]/route": "app/[slug]/route.js",
-  "/page": "app/page.js",
-  "/ping/route": "app/ping/route.js"
+  "/oauth/redirect/route": "app/oauth/redirect/route.js",
+  "/oauth/start/route": "app/oauth/start/route.js",
+  "/page": "app/page.js"
 }

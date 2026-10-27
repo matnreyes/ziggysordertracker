@@ -2,18 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const codeGenerator = require('../../middleware/codeGenerator')
 
-const { codeVerifier, codeChallenge } = codeGenerator()
-
 export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redirect'>) {
     const params = request.nextUrl.searchParams
     const authCode = params.get('code')
+    const codeVerifier = request.cookies.get('code_verifier')?.value
     const tokenUrl = 'https://api.etsy.com/v3/public/oauth/token'
     const requestOptions = {
-        method: 'GET',
+        method: 'POST',
         body: JSON.stringify({
             grant_type: 'authorization_code',
-            client_id: process.env.ETSY_API_KEY,
-            redirect_uri: process.env.REDIRECT_URI,
+            client_id: process.env.ETSY_API_KEY!,
+            redirect_uri: process.env.REDIRECT_URI!,
             code: authCode,
             code_verifier: codeVerifier,
         }),
@@ -22,7 +21,7 @@ export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redire
         }
     }
 
-    const apiResponse = await fetch(tokenUrl, requestOptions)
+    const apiResponse =  await fetch(tokenUrl, requestOptions)
 
     if (apiResponse.ok) {
         const tokenData = await apiResponse.json()
