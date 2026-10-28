@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///home/steamos/Development/ziggysordertracker/app/orders/page.tsx"],"sourcesContent":["\n\nexport default function OrderPage() {\n    return (\n        <div>\n            <p>Order name</p>\n        </div>\n    )\n}"],"names":["OrderPage"],"mappings":";;;;;;AAEe,SAASA;IACpB,qBACI,8OAAC;kBACG,cAAA,8OAAC;sBAAE;;;;;;;;;;;AAGf"}}]
+}
