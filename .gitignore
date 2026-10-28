@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/node_modules
-/.next
-.env
-=======
 node_modules/
 .env
-.next/
->>>>>>> parent of 36e90bc (add redirect to orders page)
+/.next/*
