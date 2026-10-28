@@ -26,7 +26,7 @@ function Home() {
         children: "Authenticate with Etsy"
     }, void 0, false, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 3,
+        lineNumber: 5,
         columnNumber: 5
     }, this);
 }

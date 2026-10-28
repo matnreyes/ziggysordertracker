@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 
-export async function GET(req: NextRequest) {
-    const params = req.nextUrl.searchParams
-    const cookieStore = await cookies()
+const codeGenerator = require('../../middleware/codeGenerator')
+
+export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redirect'>) {
+    const params = request.nextUrl.searchParams
     const authCode = params.get('code')
-    const codeVerifier = req.cookies.get('code_verifier')?.value
+    const codeVerifier = request.cookies.get('code_verifier')?.value
     const tokenUrl = 'https://api.etsy.com/v3/public/oauth/token'
     const requestOptions = {
         method: 'POST',
@@ -25,15 +25,8 @@ export async function GET(req: NextRequest) {
 
     if (apiResponse.ok) {
         const tokenData = await apiResponse.json()
-        cookieStore.set('access_token', tokenData.access_token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'lax',
-            maxAge: tokenData.expires_in,
-            path: '/'
-        })
-        return NextResponse.redirect('http://localhost:3000/orders')
+        return NextResponse.json(tokenData)
     } else {
-        return NextResponse.json({ message: await apiResponse.text() })
+        return NextResponse.json({ message: `Failed to retrieve access token!` })
     }
 }
