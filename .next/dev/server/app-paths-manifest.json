@@ -1,5 +1,0 @@
-{
-  "/oauth/redirect/route": "app/oauth/redirect/route.js",
-  "/oauth/start/route": "app/oauth/start/route.js",
-  "/page": "app/page.js"
-}

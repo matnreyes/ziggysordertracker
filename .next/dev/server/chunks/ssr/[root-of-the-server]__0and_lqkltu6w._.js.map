@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///home/steamos/Development/ziggysordertracker/app/page.tsx"],"sourcesContent":["import codeGenerator from '@/app/middleware/codeGenerator.js';\n\nexport default function Home() {\n  return (\n    <a href='/oauth/start'>\n      Authenticate with Etsy\n    </a>\n  )\n}"],"names":["Home","href"],"mappings":";;;;;;AAEe,SAASA;IACtB,qBACE,8OAAC;QAAEC,MAAK;kBAAe;;;;;;AAI3B"}}]
-}

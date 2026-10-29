@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 64, "column": 0}, "map": {"version":3,"sources":["file:///home/steamos/Development/ziggysordertracker/app/middleware/getShopId.ts"],"sourcesContent":["export async function getShopId(token: string) {\n    const response = await fetch('https://openapi.etsy.com/api/v3/users/me', {\n        headers: {\n            'Authorization': `Bearer ${token}`,\n            'x-api-key': `${process.env.ETSY_API_KEY}:${process.env.ETSY_API_SECRET}`\n        }\n    })\n    \n    const data = await response.json()\n    return data.shop_id || null\n}"],"names":["getShopId","token","response","fetch","headers","process","env","ETSY_API_KEY","ETSY_API_SECRET","data","json","shop_id"],"mappings":";;;;AAAO,eAAeA,UAAUC,KAAa;IACzC,MAAMC,WAAW,MAAMC,MAAM,4CAA4C;QACrEC,SAAS;YACL,iBAAiB,CAAC,OAAO,EAAEH,OAAO;YAClC,aAAa,GAAGI,QAAQC,GAAG,CAACC,YAAY,CAAC,CAAC,EAAEF,QAAQC,GAAG,CAACE,eAAe,EAAE;QAC7E;IACJ;IAEA,MAAMC,OAAO,MAAMP,SAASQ,IAAI;IAChC,OAAOD,KAAKE,OAAO,IAAI;AAC3B"}},
-    {"offset": {"line": 82, "column": 0}, "map": {"version":3,"sources":["file:///home/steamos/Development/ziggysordertracker/app/orders/route.tsx"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server';\nconst getShopId = require('@/app/middleware/getShopId');\n\n\nexport async function GET(req: NextRequest) {\n    console.log(req)\n}"],"names":["getShopId","GET","req","console","log"],"mappings":";;;;AACA,MAAMA;AAGC,eAAeC,IAAIC,GAAgB;IACtCC,QAAQC,GAAG,CAACF;AAChB"}}]
-}
