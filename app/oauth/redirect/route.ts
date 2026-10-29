@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-const codeGenerator = require('../../middleware/codeGenerator')
+import { cookies } from 'next/headers'
 
 export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redirect'>) {
+    const cookieStore = await cookies()
     const params = request.nextUrl.searchParams
     const authCode = params.get('code')
     const codeVerifier = request.cookies.get('code_verifier')?.value
@@ -25,7 +25,8 @@ export async function GET(request: NextRequest, ctx: RouteContext<'/oauth/redire
 
     if (apiResponse.ok) {
         const tokenData = await apiResponse.json()
-        return NextResponse.json(tokenData)
+        cookieStore.set('access_token', tokenData.access_token)
+        return NextResponse.redirect(new URL('/orders', request.url))
     } else {
         return NextResponse.json({ message: `Failed to retrieve access token!` })
     }
