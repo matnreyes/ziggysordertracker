@@ -1,4 +1,10 @@
-const Orders = () => {
+import { cookies } from "next/headers"
+import { Suspense } from "react"
+import getActiveOrders from "../middleware/getActiveOrders"
+
+const Orders = async () => {
+    const orders = await getActiveOrders()
+
     const sampleOrders = [
         {
             id: 123,
@@ -10,7 +16,7 @@ const Orders = () => {
     return (
         <ul>
             <li>Orders</li>
-            {sampleOrders.map(order => <li key={order.id}>{order.title}</li>)}
+            {orders.map((order, i) => <li key={i}>{order.title}</li>)}
         </ul>
     )
 }
@@ -18,7 +24,9 @@ const Orders = () => {
 export default function OrderPage () {
     return (
         <div>
-            <Orders />
+            <Suspense fallback={<p>hi</p>}>
+                <Orders />
+            </Suspense>
         </div>
     )
 }
