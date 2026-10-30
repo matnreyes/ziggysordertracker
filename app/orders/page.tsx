@@ -10,7 +10,7 @@ const Orders = async () => {
     return (
         <ul>
             <li>Orders</li>
-            {orders.map((order, i) => <li key={i}>{order.title}</li>)}
+            {orderGroups.map((order, i) => <li key={i}>{order.title}: {order.variant} <b>{order.count}</b></li>)}
         </ul>
     )
 }
