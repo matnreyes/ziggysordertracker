@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import codeGenerator from '@/app/middleware/codeGenerator.js'
+import codeGenerator from '@/lib/codeGenerator.js'
 
-export async function GET(request: Request) {
+export async function GET() {
     const { state, codeVerifier, codeChallenge } = codeGenerator()
 
     const params = new URLSearchParams({

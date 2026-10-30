@@ -1,17 +1,11 @@
 import { cookies } from "next/headers"
 import { Suspense } from "react"
-import getActiveOrders from "../middleware/getActiveOrders"
+import getActiveOrders from '@/lib/getActiveOrders'
+import orderByVariant from "@/lib/orderByVariant"
 
 const Orders = async () => {
     const orders = await getActiveOrders()
-
-    const sampleOrders = [
-        {
-            id: 123,
-            title: 'Ayn Thor Skin - Classic Sprites',
-            variant: 'Black'
-        }
-    ]
+    const orderGroups = orderByVariant(orders)
 
     return (
         <ul>
