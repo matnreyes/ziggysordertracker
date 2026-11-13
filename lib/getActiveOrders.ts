@@ -16,7 +16,7 @@ export default async function getActiveOrders() {
         limit: '35',
         was_paid: 'true',
         was_shipped: 'false',
-        was_cancelled: 'false'
+        was_canceled: 'false'
     })
 
     const receiptResponse = await fetch(
