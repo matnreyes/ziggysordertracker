@@ -8,21 +8,23 @@ type ListingCount = {
 }
 
 export default function orderByVariant(orders: FormattedReceipt[]) {
-    const listings = []
-    const totalCount: ListingCount[] = []
-    orders.forEach((order: FormattedReceipt) => {
-        if (!listings.includes(`${order.listingId} : ${order.variant}`)) {
-            listings.push(`${order.listingId} : ${order.variant}`)
-            const totalListing = orders.filter(o => order.listingId == o.listingId && order.variant == o.variant)
-            totalCount.push({
+    const listings = new Map<string, ListingCount>()
+
+    for(const order of orders) {
+        const key = `${order.title} : ${order.variant}`
+        if (!listings.has(key)) {
+            listings.set(key, {
                 listingId: order.listingId,
                 variant: order.variant,
-                count: totalListing.length,
+                count: 1,
                 title: order.title
             })
+        } else {
+            const existing: ListingCount = listings.get(key)!
+            existing.count += 1
+            listings.set(key, existing)
         }
-    })
+    }
 
-    console.log(totalCount)
-    return totalCount
+    return listings.values()
 }
