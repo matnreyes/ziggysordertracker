@@ -4,7 +4,7 @@ import getActiveOrders from '@/lib/getActiveOrders'
 import orderByVariant from "@/lib/orderByVariant"
 
 const Orders = async () => {
-    const orders = await getActiveOrders()
+    const orders = Array.from(await getActiveOrders())
     const orderGroups = orderByVariant(orders)
 
     return (
